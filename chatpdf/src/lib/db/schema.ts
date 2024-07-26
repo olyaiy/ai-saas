@@ -13,7 +13,7 @@ export const chats = pgTable('chats', {
 
 export type DrizzleChats = typeof chats.$inferSelect;
 
-export const messaages = pgTable('messages', {
+export const messages = pgTable('messages', {
     id: serial('id').primaryKey(),
     chatId: integer('chat_id').references(()=>chats.id).notNull(),
     content: text('content').notNull(),
