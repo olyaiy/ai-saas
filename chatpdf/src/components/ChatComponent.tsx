@@ -8,16 +8,29 @@ import { Button } from './ui/button'
 import { messages } from '@/lib/db/schema'
 import MessageList from './MessageList'
 
-type Props = {}
+type Props = {chatId: number}
 
-const ChatComponent = (props: Props) => {
+const ChatComponent = ({chatId}: Props) => {
 
     const {input, handleInputChange, handleSubmit, messages } = useChat({
         api: '/api/chat',
+        body: {
+            chatId
+        }
     });
 
-  return (
-    <div className="relative max-h-screen overflow-scroll">
+
+    React.useEffect(() => {
+        const messageContainer = document.getElementById("message-container");
+        if (messageContainer) {
+          messageContainer.scrollTo({
+            top: messageContainer.scrollHeight,
+            behavior: "smooth",
+          });
+        }
+      }, [messages]);
+      return (
+    <div className="relative max-h-screen overflow-scroll" id='message-container'>
         {/* header */}
         <div className="sticky top-0 inset-x-0 bg-white p-2 h-fit">
             <h3 className='text-xl font-bold'>Chat</h3>
@@ -25,7 +38,7 @@ const ChatComponent = (props: Props) => {
         </div>
 
         {/* Message list */}
-
+        
         <MessageList message={messages}/> 
 
 
