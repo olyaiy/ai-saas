@@ -1,6 +1,6 @@
 import { getContext } from '@/lib/context';
 import { db } from '@/lib/db';
-import { chats } from '@/lib/db/schema';
+import { chats, messages as _messages } from '@/lib/db/schema';
 import { openai } from '@ai-sdk/openai';
 import {Message, streamText} from 'ai'
 import { eq } from 'drizzle-orm';
@@ -49,9 +49,26 @@ export async function POST(req: Request) {
                 prompt,
                 ...messages.filter((message: Message) => message.role === "user"),
               ],
-          });
+              
 
-        console.log("Messages sent to AI:", messages);
+              // save user message into db
+              async onFinish({ text, toolCalls, toolResults, usage, finishReason }) 
+              {
+                await db.insert(_messages).values({
+                chatId,
+                content: messages.filter((msg: {role: string, content: string}) => msg.role === 'user').slice(-1)[0].content,
+                role: 'user',
+                })
+
+                await db.insert(_messages).values({
+                    chatId,
+                    content: text,
+                    role: 'system',
+                    })
+                
+            },
+          
+          });
 
         return result.toAIStreamResponse();
           
