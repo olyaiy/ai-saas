@@ -7,14 +7,15 @@ import { Button } from './ui/button'
 import { MessageCircle, PlusCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import axios from 'axios'
+import SubscriptionButton from './SubscriptionButton'
 
 type Props = {
     chats: DrizzleChats[],
     chatId: number,
-
+    isPro: boolean
 }
 
-const ChatSideBar = ({chats, chatId}: Props) => {
+const ChatSideBar = ({chats, chatId, isPro}: Props) => {
     const [loading, setLoading] = React.useState(false)
 
     const handleSubscription = async () => {
@@ -65,9 +66,7 @@ const ChatSideBar = ({chats, chatId}: Props) => {
                 <Link href='/'>Source</Link>
             </div>
             {/* Stripe Button  */}
-            <Button className="mt-2 text-white bg-slate-700" disabled={loading} onClick={handleSubscription}>
-                Upgrade to Pro
-            </Button>
+           <SubscriptionButton isPro={isPro}/>
         </div>
 
     </div>

@@ -4,7 +4,7 @@ import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
-import {LogIn} from 'lucide-react'
+import {ArrowBigRight, ArrowRight, LogIn} from 'lucide-react'
 import FileUpload from "@/components/FileUpload";
 import { checkSubscription } from "@/lib/subscription";
 import SubscriptionButton from "@/components/SubscriptionButton";
@@ -40,7 +40,9 @@ export default async function Home() {
             {/* if the user is authenticated, show the button to go to chats */}
             {isAuth && firstChat && 
             <Link href={`chat/${firstChat.id}`}>
-              <Button> Go To Chats</Button> 
+              <Button>Go To Chats
+                <ArrowRight className="ml-2"/>
+              </Button> 
             </Link>
             }
             <div className="ml-3">
