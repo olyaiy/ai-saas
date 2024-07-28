@@ -1,13 +1,23 @@
 'use client'
 import { cn } from '@/lib/utils'
 import { Message } from 'ai/react'
+import { Loader2 } from 'lucide-react'
 import React from 'react'
 
 type Props = {
+    isLoading: boolean
     message: Message[]
 }
 
-const MessageList = ({message}: Props) => {
+const MessageList = ({message, isLoading}: Props) => {
+    if (isLoading) return (
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <Loader2 className="w-6 h-6 animate-spin"/>
+    </div>
+    
+    )
+
+
   if (!message) return <></> 
 
   return(
