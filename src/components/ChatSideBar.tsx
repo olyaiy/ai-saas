@@ -38,7 +38,6 @@ const ChatSideBar = ({chats, chatId, isPro}: Props) => {
             <Button className="w-full border-dashed border-white border">
                 <PlusCircle className='mr-2 w-4 h-4'/>
                 New Chat
-
                 </Button>
         </Link>
 
@@ -63,10 +62,10 @@ const ChatSideBar = ({chats, chatId, isPro}: Props) => {
         <div className="absolute bottom-4 left-4">
             <div className="flex items-center gap-2 text-sm text-slate-500 flex-wrap">
                 <Link href='/'>Home</Link>
-                <Link href='/'>Source</Link>
-            </div>
             {/* Stripe Button  */}
            <SubscriptionButton isPro={isPro}/>
+
+           </div>
         </div>
 
     </div>
