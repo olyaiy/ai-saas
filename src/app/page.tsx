@@ -51,7 +51,7 @@ export default async function Home() {
                   </Button>
                 </Link>
               )}
-              {!isAuth && <SubscriptionButton isPro={isPro}/>}
+              {/* {!isAuth && <SubscriptionButton isPro={isPro}/>} */}
             </div>
             
             {isAuth && (
