@@ -5,7 +5,9 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-const return_url = process.env.NEXT_BASE_URL + "/";
+// const return_url = process.env.NEXT_BASE_URL + "/";
+const return_url = "https://ai-saas-cklty4vad-olyaiys-projects.vercel.app/";
+
 
 export async function GET() {
   try {
