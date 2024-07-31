@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 // const return_url = process.env.NEXT_BASE_URL + "/";
-const return_url = "https://ai-saas-cklty4vad-olyaiys-projects.vercel.app/";
+const return_url = "ai-saas-neon-psi.vercel.app/";
 
 
 export async function GET() {
